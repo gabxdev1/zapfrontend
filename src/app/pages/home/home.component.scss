@@ -1,0 +1,78 @@
+:host {
+  .container-home {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px 60px;
+    background: var(--color-cinza-fumaca);
+  }
+
+  .app-menu {
+    height: 100%;
+    width: auto;
+  }
+
+  .container-section-2 {
+    height: 100%;
+    width: 380px !important;
+    min-width: 380px;
+    max-width: 380px !important;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--input-bg);
+    padding: 13px 0;
+  }
+
+  .app-conversation-header {
+    width: 100%;
+    height: auto;
+  }
+
+  .app-side-bar-friendship {
+    width: 100%;
+    height: 100%;
+  }
+
+  .app-conversation-list {
+    width: 100%;
+    height: 100%;
+  }
+
+  .container-section-3 {
+    width: 100%;
+    height: 100%;
+  }
+
+  .app-friend-request {
+    width: 100%;
+    height: 100%;
+  }
+
+  .app-notification {
+    width: 100%;
+    height: 100%;
+  }
+
+  .app-create-group {
+    width: 100%;
+    height: 100%;
+  }
+
+  .background {
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-image: url("../../../assets/solo-leveling-sung-jin-woo.jpg");
+    background-size: cover;
+    background-color: var(--color-preto-escuro);
+    background-repeat: no-repeat;
+    background-position: 80% center;
+  }
+
+  .app-chat-view {
+    width: 100%;
+    height: 100%;
+  }
+}

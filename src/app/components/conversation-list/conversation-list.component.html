@@ -1,0 +1,39 @@
+<div class="container-conversation-list">
+  <ul class="container-items">
+
+    @for (conversation of recentConversations$ | async; track conversation.type + "_" + conversation.id) {
+      <li class="container-user" (click)="openChat(conversation)">
+        <img class="profile-img" src="../../../assets/default-user.jpg">
+
+        <div class="container-user-details">
+          <p class="name">{{ conversation.name }}</p>
+
+          @if (conversation.lastMessage) {
+            <p class="last-message">{{ conversation.lastMessage }}</p>
+          }
+
+          @if (!conversation.lastMessage && conversation.type === ChatType.GROUP && conversation.groupCreateBy === currentUser.nickname) {
+            <p class="last-message">You created the group "{{ conversation.name }}"</p>
+          }
+
+          @if (!conversation.lastMessage && conversation.type === ChatType.GROUP && conversation.groupCreateBy !== currentUser.nickname) {
+            <p class="last-message">You were added to the group</p>
+          }
+        </div>
+
+        @if (conversation.lastMessageAt) {
+          <p
+            class="last-message-at">{{ conversation.lastMessageAt | date: "HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
+        }
+
+        @if (!conversation.lastMessageAt && conversation.type === ChatType.GROUP) {
+          <p class="last-message-at">{{ conversation.groupCreatAt | date: "HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
+        }
+
+        @if (conversation.unreadCount && conversation.unreadCount > 0) {
+          <p class="count-message" [matBadge]="conversation.unreadCount"></p>
+        }
+      </li>
+    }
+  </ul>
+</div>

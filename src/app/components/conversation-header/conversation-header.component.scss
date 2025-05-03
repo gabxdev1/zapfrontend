@@ -1,0 +1,34 @@
+:host {
+  .container-conversation-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    align-content: flex-start;
+    gap: 16px;
+
+    li {
+      mat-icon {
+        color: var(--color-azul-eter);
+      }
+    }
+  }
+
+  .title {
+    color: var(--color-vermelho-lua);
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .chat-add {
+    margin-top: 0.5rem;
+  }
+
+  .two-li {
+    margin-left: auto;
+  }
+}
+

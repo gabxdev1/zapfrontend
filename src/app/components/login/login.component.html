@@ -1,0 +1,30 @@
+<div class="login-background"></div>
+
+<div class="container-form">
+
+  @if (menuService.login$ | async) {
+    <form class="form-login" [formGroup]="formLogin" (ngSubmit)="submitForm()">
+      <h1 class="titulo">Login</h1>
+
+      <div class="container-input">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email">
+      </div>
+
+      <div class="container-input">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password">
+      </div>
+
+      <p style="display: none" class="forgot">Forgot password?</p>
+
+      <button [disabled]="!formLogin.valid" type="submit">Sign In</button>
+    </form>
+
+    <p class="signup" (click)="openSignup()">Don't have an account? <span>Sign up now</span></p>
+  }
+
+  @if (menuService.register$ | async) {
+    <app-sign-in class="app-sign-in"/>
+  }
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+  <header class="header">
+    <div class="container-exit">
+      <mat-icon (click)="closeGroupInfo()" class="button icon-close">close</mat-icon>
+      <p>Group info</p>
+    </div>
+
+    <img class="img-header" src="../../../assets/default-user.jpg">
+
+    <div class="container-name">
+      <h1 class="name">{{ activeGroup.name }}</h1>
+      <p class="members-quantity">{{ activeGroup.members.length }} members</p>
+    </div>
+
+  </header>
+
+  <section class="container-details">
+    <p class="group-description">{{ activeGroup.description }}</p>
+    <p class="created-at">Group created
+      by {{ activeGroup.audit.createdBy.firstName }} {{ activeGroup.audit.createdBy.lastName }}
+      on {{ activeGroup.audit.createdAt | date:'MM/dd/yyyy \'at\' HH:mm':'America/Sao_Paulo':'en-US' }}</p>
+  </section>
+
+  <section class="members-container">
+    @if (isAdmin) {
+      <div class="add-member-container" (click)="openModalAddMember()">
+        <mat-icon class="icon-member">person_add</mat-icon>
+        <p>Add member</p>
+      </div>
+    }
+
+    <ul class="container-member-list">
+      @for (members of activeGroup.members; track members.user.id) {
+        <li>
+          <img class="img" src="../../../assets/default-user.jpg">
+          <div class="user-details">
+            <p class="name">{{ members.user.firstName }} {{ members.user.lastName }}</p>
+            <p class="nickname">{{ members.user.nickname }}</p>
+          </div>
+          <div class="audit-container">
+            @if (members.moderator) {
+              <p class="admin">Group admin</p>
+            }
+            <p class="audit-info">Joined {{ members.audit.createdAt | date: "dd MMM yyyy 'at' HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
+          </div>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <footer class="footer-container">
+    <div>
+      <mat-icon>logout</mat-icon>
+      <p>Leave group</p>
+    </div>
+  </footer>
+</div>

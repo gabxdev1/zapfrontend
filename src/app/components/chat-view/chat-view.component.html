@@ -1,0 +1,236 @@
+<div class="container">
+  <div class="container-chat-view" [ngClass]="{'width-50': messageDataOpen || detailsOpen, 'width-100': !messageDataOpen && !detailsOpen}">
+    <div class="header-chat-view">
+      <img (click)="openDetails()" class="profile-image" src="../../../assets/default-user.jpg">
+
+      <div class="container-user" (click)="openDetails()">
+        @if (activeChatHeaderInfo.userChatHeaderInfo) {
+          <p class="name">{{ activeChatHeaderInfo.userChatHeaderInfo.name }}</p>
+          <div class="status">
+            <p class="username">{{ activeChatHeaderInfo.userChatHeaderInfo.nickname }}</p>
+            @if (userPresenceStatus() && userPresenceStatus()?.status == UserStatus.ONLINE) {
+              <p class="user-status">online</p>
+            } @else {
+              <p
+                class="user-status lastSeen">{{ userPresenceStatus()?.lastSeenAt | date: "dd MMM yyyy 'at' HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
+            }
+          </div>
+        }
+
+        @if (activeChatHeaderInfo.groupChatHeaderInfo) {
+          <p class="name">{{ activeChatHeaderInfo.groupChatHeaderInfo.name }}</p>
+          <div class="status">
+            <p class="username">{{ activeChatHeaderInfo.groupChatHeaderInfo.nickname }}</p>
+          </div>
+        }
+
+      </div>
+
+      <div class="container-options">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+          <mat-icon id="icon">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="menu">
+          <button mat-menu-item>
+            <mat-icon>description</mat-icon>
+            @if(activeChatTarget?.type === ChatType.GROUP) {
+              <span (click)="openDetails()">Group details</span>
+            } @else {
+              <span>Contact details</span>
+            }
+          </button>
+          <button mat-menu-item (click)="closeConversation()">
+            <mat-icon>close</mat-icon>
+            <span>Close conversation</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+
+    <div class="chat-messages">
+      @for (message of activeChatMessages | async; track message.id) {
+        <div
+          [matMenuTriggerFor]="message.sender.id === currentUser.id ? messageOptions : null"
+          (click)="message.sender.id === currentUser.id ? openMenu($event, message) : null"
+          [attr.data-message-id]="message.id"
+          #messageRef
+          class="message messages"
+          [ngClass]="{'message-sent': message.sender.id === currentUser.id, 'message-received': message.sender.id !== currentUser.id}">
+          @if (activeChatTarget?.type === ChatType.GROUP && message.sender.id !== currentUser.id) {
+            <p [style.color]="message.color" class="user">{{ message.sender.firstName }} {{ message.sender.lastName }}
+              <span class="user_nick">{{ message.sender.nickname }}</span></p>
+          }
+
+          {{ message.content }}
+
+          <div class="container-audit">
+            <span
+              class="message-time">{{ message.createdAt | date: "HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</span>
+            @if (message.sender.id === currentUser.id) {
+
+              @if (message.status === MessageStatus.PENDING) {
+                <mat-icon class="message-status pending">sync</mat-icon>
+              }
+
+              @if (message.status === MessageStatus.SENT) {
+                <mat-icon class="message-status sent">check</mat-icon>
+              }
+
+              @if (message.status === MessageStatus.RECEIVED) {
+                <mat-icon class="message-status received">done_all</mat-icon>
+              }
+
+              @if (message.status === MessageStatus.READ) {
+                <mat-icon class="message-status read">done_all</mat-icon>
+              }
+            }
+          </div>
+        </div>
+      }
+
+      <mat-menu #messageOptions="matMenu">
+        <button mat-menu-item (click)="onOptionClick('messageData', selectedMessage)">Message Data</button>
+        <button mat-menu-item (click)="onOptionClick('delete', selectedMessage)">Delete</button>
+      </mat-menu>
+    </div>
+
+    <div class="chat-input">
+      <div class="chat-input-icons">
+        <mat-icon class="emoji">mood</mat-icon>
+      </div>
+
+      <textarea #chatInput [(ngModel)]="message" class="chat-input-text chat-input"
+                placeholder="Type a message"></textarea>
+
+      @if (activeChatTarget?.type === ChatType.PRIVATE) {
+        <mat-icon class="send" (click)="sendPrivateMessage()">send</mat-icon>
+      }
+
+      @if (activeChatTarget?.type === ChatType.GROUP) {
+        <mat-icon class="send" (click)="sendGroupMessage()">send</mat-icon>
+      }
+    </div>
+  </div>
+
+  <div *ngIf="messageDataOpen && messageData$() as data" class="container-message-data">
+
+    <header class="header-data">
+      <mat-icon class="icon-close" (click)="closeMessageData()">close</mat-icon>
+      <p class="title">Message info</p>
+    </header>
+
+    <div class="container-scroll">
+      <div
+        class="message data"
+        [ngClass]="{'message-sent': data.sender.id === currentUser.id, 'message-received': data.sender.id !== currentUser.id}">
+        {{ data.content }}
+
+        <div class="container-audit">
+          <span class="message-time">{{ data.createdAt | date:'shortTime' }}</span>
+          @if (data.sender.id === currentUser.id) {
+            @if (data.status === MessageStatus.SENT) {
+              <mat-icon class="message-status sent">check</mat-icon>
+            }
+
+            @if (data.status === MessageStatus.RECEIVED) {
+              <mat-icon class="message-status received">done_all</mat-icon>
+            }
+
+            @if (data.status === MessageStatus.READ) {
+              <mat-icon class="message-status read">done_all</mat-icon>
+            }
+          }
+        </div>
+      </div>
+    </div>
+
+    @if (this.activeChatTarget?.type === ChatType.PRIVATE) {
+      <div class="container-data">
+
+        <div class="card-data">
+          <div class="container-data-">
+            <mat-icon class="read-data">done_all</mat-icon>
+            <p>Seen</p>
+          </div>
+          @if (data.readAt) {
+            <p>{{ data.readAt | date: "dd MMM yyyy 'at' HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
+          } @else {
+            <p>-</p>
+          }
+        </div>
+
+        <div class="card-data">
+          <div class="container-data-">
+            <mat-icon class="delivered-data">done_all</mat-icon>
+            <p>Delivered</p>
+          </div>
+          @if (data.receivedAt) {
+            <p>{{ data.receivedAt | date: "dd MMM yyyy 'at' HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
+          } @else {
+            <p>-</p>
+          }
+        </div>
+      </div>
+    }
+
+    @if (this.activeChatTarget?.type === ChatType.GROUP) {
+      <div class="container-data">
+
+        <div class="card-data card-data-group">
+          <div class="container-data- container-data-group">
+            <mat-icon class="read-data">done_all</mat-icon>
+            <p>Read by</p>
+          </div>
+
+
+          @for (messageGroupStatus of messageGroupStatus$(); track messageGroupStatus.id) {
+            @if (messageGroupStatus.messageStatus === MessageStatus.READ) {
+              <div class="container-data-user">
+                <img class="profile-img" src="../../../assets/default-user.jpg">
+
+                <div class="container-user-details">
+                  <p class="name name-data">{{ messageGroupStatus.firstName }} {{messageGroupStatus.lastName}}</p>
+                  <p
+                    class="time">{{ messageGroupStatus.readAt | date: "dd MMM yyyy 'at' HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
+                </div>
+              </div>
+            }
+          }
+        </div>
+
+
+        <div class="card-data card-data-group">
+          <div class="container-data- container-data-group">
+            <mat-icon class="delivered-data">done_all</mat-icon>
+            <p>Delivered to</p>
+          </div>
+
+          @for (messageGroupStatus of messageGroupStatus$(); track messageGroupStatus.id) {
+            @if (messageGroupStatus.messageStatus === MessageStatus.RECEIVED) {
+              <div class="container-data-user">
+                <img class="profile-img" src="../../../assets/default-user.jpg">
+
+                <div class="container-user-details">
+                  <p class="name name-data">{{ messageGroupStatus.firstName }} {{messageGroupStatus.lastName}}</p>
+                  <p
+                    class="time">{{ messageGroupStatus.receivedAt | date: "dd MMM yyyy 'at' HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
+                </div>
+              </div>
+            }
+          }
+
+        </div>
+
+
+      </div>
+    }
+
+  </div>
+
+  @if (detailsOpen) {
+    @if (activeChatTarget?.type === ChatType.GROUP) {
+      <app-group-data (closeGroupInfoEvent)="closeGroupInfo()" [groupId]="activeChatTarget?.id" class="app-group-data"/>
+    }
+  }
+
+</div>

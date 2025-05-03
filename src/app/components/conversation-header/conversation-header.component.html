@@ -1,0 +1,28 @@
+<div class="container-conversation-header">
+
+  <li><h1 class="title">Conversations</h1></li>
+
+  <li class="two-li">
+    <button class="button" (click)="openFriendship()">
+      <mat-icon class="chat-add">chat_add_on</mat-icon>
+    </button>
+  </li>
+
+  <li>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="menu">
+      <button mat-menu-item (click)="createGroupOpen()">
+        <mat-icon>group_add</mat-icon>
+        <span>New group</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </li>
+</div>
+
+

@@ -1,0 +1,46 @@
+<nav class="side-menu">
+  <ul>
+    @if (messagesUnreadCount > 0) {
+      <li (click)="openConversation()" [matBadge]="messagesUnreadCount" matTooltip="Conversations" class="chat">
+        <button class="button">
+          <mat-icon>chat</mat-icon>
+        </button>
+      </li>
+    } @else {
+      <li (click)="openConversation()" matTooltip="Conversations" class="chat">
+        <button class="button">
+          <mat-icon>chat</mat-icon>
+        </button>
+      </li>
+    }
+
+    <li matTooltip="Friend request" (click)="openFriendRequest()" class="chat">
+      <button class="button">
+        <mat-icon>person_add</mat-icon>
+      </button>
+    </li>
+
+    @if (friendRequestCount > 0) {
+      <li [matBadge]="friendRequestCount" matTooltip="Notifcation" (click)="openNotifications()" class="chat">
+        <button class="button">
+          <mat-icon>notifications</mat-icon>
+        </button>
+      </li>
+    } @else {
+      <li matTooltip="Notifcation" (click)="openNotifications()" class="chat">
+        <button class="button">
+          <mat-icon>notifications</mat-icon>
+        </button>
+      </li>
+    }
+
+    <li matTooltip="Settings" class="settings">
+      <button class="button">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </li>
+    <li matTooltip="Profile" class="profile">
+      <img src="../../../assets/default-user.jpg" width="20px">
+    </li>
+  </ul>
+</nav>

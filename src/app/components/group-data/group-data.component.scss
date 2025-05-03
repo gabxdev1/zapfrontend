@@ -1,0 +1,238 @@
+:host {
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: var(--input-bg);
+    border-left: 1px solid var(--border-color);
+    overflow-y: auto;
+  }
+
+  .header {
+    padding: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #0b141a;
+  }
+
+  .container-exit {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 30px;
+    gap: 16px;
+
+    .icon-close {
+      color: var(--color-azul-eter);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    p {
+      color: var(--text-color);
+      font-size: 18px;
+    }
+  }
+
+  .img-header {
+    width: 140px;
+    border-radius: 50%;
+  }
+
+  .container-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    gap: 5px;
+
+    .name {
+      color: var(--text-color);
+      font-size: 24px;
+    }
+
+    p {
+      color: var(--muted-text-color);
+      font-size: 12px;
+    }
+  }
+
+  .container-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 16px;
+    background-color: #0b141a;
+    gap: 5px;
+
+    .group-description {
+      color: var(--text-color);
+      font-size: 16px;
+    }
+
+    .created-at {
+      color: var(--muted-text-color);
+      font-size: 13px;
+    }
+  }
+
+  .members-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #0b141a;
+  }
+
+  .add-member-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 13px;
+    padding: 16px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--border-color);
+    }
+
+    .icon-member {
+      color: var(--text-color);
+      background: var(--color-azul-eter);
+      border-radius: 50%;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--text-color);
+    }
+  }
+
+  .img {
+    width: 40px;
+    border-radius: 50%;
+  }
+
+  .container-member-list {
+    height: 100%;
+    overflow-y: auto;
+    max-height: 370px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 13px;
+
+    li {
+      &:hover {
+        cursor: pointer;
+        background-color: var(--border-color);
+      }
+
+      width: 100%;
+      display: flex;
+      padding: 10px 16px 10px 16px;
+      gap: 13px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .name {
+      color: var(--text-color);
+    }
+
+    .nickname {
+      color: var(--muted-text-color);
+      font-size: 14px;
+
+      &::before {
+        content: '@';
+      }
+    }
+  }
+
+  .footer-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #0b141a;
+    margin-top: auto;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: row;
+      padding: 16px;
+      width: 100%;
+      gap: 13px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: var(--border-color);
+      }
+
+      mat-icon {
+        color: var(--color-vermelho-lua);
+      }
+
+      p {
+        color: var(--color-vermelho-lua);
+      }
+    }
+  }
+
+  .audit-container {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .admin {
+    background-color: var(--border-color);
+    border-radius: 3px;
+    font-size: 13px;
+    padding: 3px;
+    color: var(--color-azul-eter);
+  }
+
+  .audit-info {
+    font-size: 13px;
+    color: var(--muted-text-color);
+  }
+}

@@ -1,0 +1,139 @@
+:host {
+  .container-sidebar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    gap: 20px;
+
+    p {
+      color: var(--color-roxo-nevoa);
+    }
+  }
+
+  .title {
+    font-size: 22px !important;
+  }
+
+  .container-title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+
+    mat-icon {
+      color: var(--color-azul-eter);
+    }
+
+    h1 {
+      font-size: 16px;
+      color: var(--text-color);
+    }
+  }
+
+  .container-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    label {
+      margin-top: 5px;
+
+      mat-icon {
+        color: var(--color-azul-eter);
+        cursor: pointer;
+      }
+    }
+
+    input {
+      width: 100%;
+      padding: 5px 10px;
+      font-size: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      outline: none;
+      transition: 0.3s ease all;
+      background: var(--input-border);
+      color: var(--text-color);
+
+    }
+  }
+
+  .container-friend {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+
+    img {
+      width: 40px;
+      border-radius: 50%;
+    }
+  }
+
+  .friendship {
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--border-color);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-azul-eter);
+      border-radius: 5px;
+    }
+  }
+
+  .container-user {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    align-content: center;
+    gap: 5px;
+    width: 100%;
+    height: 50px;
+    padding: 4px 0 0 6px;
+
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .name {
+    color: var(--text-color) !important;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .username {
+    color: var(--muted-text-color) !important;
+    font-size: 12px;
+
+    &:before {
+      content: '@';
+    }
+  }
+
+  .add {
+    position: absolute;
+    right: 10px;
+    color: var(--color-azul-eter);
+    transition: 0.5s linear all;
+
+    &:hover {
+      cursor: pointer;
+      background: var(--input-border);
+      border-radius: 50%;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<form class="form-login" [formGroup]="formSignIn" (ngSubmit)="submitForm()">
+  <h1 class="titulo">Create Account</h1>
+
+  <div class="container-info">
+    <div class="container-input">
+      <label for="first-name">First Name</label>
+      <input id="first-name" type="text" formControlName="firstName">
+    </div>
+
+    <div class="container-input">
+      <label for="last-name">Last Name</label>
+      <input id="last-name" type="text" formControlName="lastName">
+    </div>
+  </div>
+
+  <div class="container-input">
+    <label for="nickname">Username</label>
+    <input id="nickname" type="text" formControlName="nickname">
+  </div>
+
+  <div class="container-input">
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email">
+  </div>
+
+  <div class="container-input">
+    <label for="password">Password</label>
+    <input id="password" type="password" formControlName="password">
+  </div>
+
+  <button [disabled]="!formSignIn.valid" type="submit">Create Account</button>
+</form>
+
+<p class="signup" (click)="openLogin()">Already have an account? <span>Sign in</span></p>
+

@@ -1,0 +1,41 @@
+:host {
+  .side-menu {
+    height: 100%;
+    width: 50px;
+    padding: 20px 0;
+    background: var(--input-border);
+    border-right: 1px solid var(--border-color);
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100%;
+
+      li {
+        transition: 0.3s linear all;
+
+        mat-icon {
+          color: var(--color-azul-eter);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+
+  .settings {
+    margin-top: auto;
+  }
+
+  .profile {
+    margin-top: 5px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+}

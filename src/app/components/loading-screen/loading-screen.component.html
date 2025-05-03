@@ -1,0 +1,25 @@
+<!-- loading.component.html -->
+<div class="loading-container" @fadeInOut>
+  <div class="loading-content">
+    <div class="electricity-container">
+      <!-- Electric Glow Background -->
+      <div class="electric-bg"></div>
+
+      <!-- Lightning Effects -->
+      <div class="lightning-effect lightning-1"></div>
+      <div class="lightning-effect lightning-2"></div>
+      <div class="lightning-effect lightning-3"></div>
+      <div class="lightning-effect lightning-4"></div>
+
+      <!-- Title -->
+      <h1 class="title" [@pulse]="pulseState">ZAP</h1>
+    </div>
+
+    <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+    <p class="loading-message">{{ currentMessage }}</p>
+  </div>
+</div>

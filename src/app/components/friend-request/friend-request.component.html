@@ -1,0 +1,30 @@
+<div class="container-sidebar">
+
+  <div class="container-title">
+    <h1 class="title">Friend request</h1>
+  </div>
+
+  <div class="container-input">
+    <label for="input">
+      <mat-icon class="button" id="search-icon">search</mat-icon>
+    </label>
+    <input [formControl]="searchControl" id="input" type="text" placeholder="example: @jon.421">
+  </div>
+
+  <p>USERS FOUND</p>
+
+  <ul class="friendship">
+    @for (userFound of usersFound; track userFound.id) {
+      <li class="container-friend">
+        <img src="../../../assets/default-user.jpg">
+        <div class="container-user">
+          <p class="name">{{ userFound.firstName }} {{ userFound.lastName }}</p>
+          <p class="username">{{ userFound.nickname }}</p>
+        </div>
+        <mat-icon #add (click)="inviteRequest(userFound)"
+                  class="add">{{ !userFound.isRequestSent ? 'add' : 'check_circle' }}
+        </mat-icon>
+      </li>
+    }
+  </ul>
+</div>

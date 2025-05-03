@@ -1,0 +1,30 @@
+<div class="container-sidebar">
+
+  <div class="container-title">
+    <mat-icon class="button" (click)="closeFriendship()">arrow_back</mat-icon>
+    <h1>New conversation</h1>
+  </div>
+
+  <div class="container-input">
+    <label for="input">
+      <mat-icon class="button" id="search-icon">search</mat-icon>
+    </label>
+    <input [formControl]="searchControl" id="input" type="text" placeholder="Search name">
+  </div>
+
+  <p>CONTACTS ON ZAP</p>
+
+  <ul class="friendship">
+    @for (friendship of friendshipsFiltered; track friendship.id) {
+      <li class="container-friend" (click)="openChat(friendship)">
+        <img src="../../../assets/default-user.jpg">
+        <div class="container-user">
+          <p class="name">{{ friendship.firstName }} {{ friendship.lastName }}</p>
+          <p class="username">{{ friendship.nickname }}</p>
+        </div>
+      </li>
+    }
+
+    <li #anchor></li>
+  </ul>
+</div>

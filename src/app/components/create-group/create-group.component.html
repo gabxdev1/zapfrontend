@@ -1,0 +1,75 @@
+<div class="container-sidebar">
+  <div class="container-title">
+    @if (this.currentStep === 0) {
+      <mat-icon class="button" (click)="closeOrPrevStep()">close</mat-icon>
+      <h1>Add members</h1>
+    }
+
+    @if (this.currentStep === 1) {
+      <mat-icon class="button" (click)="closeOrPrevStep()">arrow_back</mat-icon>
+      <h1>New Group</h1>
+    }
+
+  </div>
+
+  @if (currentStep === 0) {
+    <div class="container-input">
+
+      <div class="selected-users">
+        <ul class="container-selected-user">
+          @for (userSelected of selectedUsers; track userSelected.id) {
+            <li class="selected-user fade-in">
+              <img src="../../../assets/default-user.jpg">
+              <p class="name name-selected-user">{{ userSelected.firstName }} {{ userSelected.lastName }}</p>
+              <mat-icon class="button button-user" (click)="removeUser(userSelected)">close</mat-icon>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <input autofocus [formControl]="searchControl" id="input" type="text" placeholder="Search name">
+    </div>
+
+    <ul class="friendship">
+      @for (friendship of friendshipsFiltered; track friendship.id) {
+        <li class="container-friend fade-in" (click)="selectUser(friendship)">
+          <img src="../../../assets/default-user.jpg">
+          <div class="container-user">
+            <p class="name">{{ friendship.firstName }} {{ friendship.lastName }}</p>
+            <p class="username">{{ friendship.nickname }}</p>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+  @if (currentStep === 1) {
+    <div class="container-group-info">
+      <img class="img-group" src="../../../assets/default-user.jpg">
+      <form class="form-group" [formGroup]="formGroup">
+        <input autofocus class="input-group" formControlName="name" placeholder="Group name" type="text">
+        <input class="input-group" formControlName="description" placeholder="Group description" type="text">
+      </form>
+    </div>
+  }
+
+
+  @if (selectedUsers.length > 0) {
+    <div class="container-step">
+      @if (currentStep === 0) {
+        <mat-icon class="button button-step" (click)="nextPrevStep()">arrow_forward</mat-icon>
+      }
+
+      @if (currentStep === 1) {
+        <button [disabled]="!formGroup.valid" class="button button-create-group" (click)="createGroup()">
+          <mat-icon class="button button-step">check</mat-icon>
+        </button>
+      }
+    </div>
+  }
+
+</div>
+
+
+
+
+

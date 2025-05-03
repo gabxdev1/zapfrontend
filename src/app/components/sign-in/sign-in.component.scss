@@ -1,0 +1,94 @@
+:host {
+  .titulo {
+    color: var(--primary-color);
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .container-input {
+
+    display: flex;
+    flex-direction: column;
+
+    label {
+      color: var(--muted-text-color);
+      font-size: 12px;
+    }
+
+    input {
+      outline: none;
+      padding: 0.5rem;
+      width: 100%;
+      border-radius: 6px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      transition: 0.3s linear all;
+      box-shadow: inset 1px 1px 1px var(--solo-1), inset -1px -1px 1px var(--solo-1);
+      font-size: 16px;
+      color: var(--text-color);
+      &:focus {
+        border: 1px solid var(--primary-color);
+      }
+    }
+  }
+
+  button {
+    background: var(--accent-color);
+    color: var(--text-color);
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: var(--primary-color);
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.5;
+    }
+  }
+
+  p {
+    color: var(--muted-text-color);
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  span {
+    color: var(--accent-color);
+    cursor: pointer;
+  }
+
+  span:hover {
+    color: var(--primary-color);
+  }
+
+  .forgot {
+    cursor: pointer;
+    &:hover {
+      color: var(--input-border);
+    }
+  }
+
+  .signup {
+    margin-top: 20px;
+  }
+
+  .container-info {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 13px;
+  }
+
+}

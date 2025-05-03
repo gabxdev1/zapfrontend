@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --color-vermelho-lua: #E94057;
+  --color-preto-escuro: #0F0F1B;
+  --color-laranja-brasa: #FF6F3C;
+  --color-roxo-nevoa: #5C2E91;
+  --color-cinza-fumaca: #2C2C2C;
+  --color-azul-eter: #3974E0;
+  --button-bg-hover: rgba(184, 21, 76, 0.28);
+  --border-color: rgba(57, 116, 224, 0.27);
+
+  --bg-color: #0b0b0d;             // Fundo geral escuro (quase preto)
+  --primary-color: #8b2e4a;        // Vermelho rosado - destaque
+  --secondary-color: #3e224a;      // Roxo profundo - elementos secundários
+  --accent-color: #c4575d;         // Vermelho queimado - botões
+  --text-color: #e0dce4;           // Texto principal - cinza claro
+  --muted-text-color: #8f8898;     // Texto secundário - rótulos, ajuda
+  --input-bg: #1a1a1d;             // Fundo dos inputs
+  --input-border: #29292e;         // Borda dos inputs
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--border-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-azul-eter);
+  border-radius: 5px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--black);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-badge-content {
+  background-color: var(--color-roxo-nevoa) !important;
+  background-color: var(--color-roxo-nevoa) !important;
+  color: var(--text-color) !important;
+}
+
+.mat-mdc-menu-panel {
+  background: var(--input-border) !important;
+}
+
+.mat-mdc-menu-item .mat-icon-no-color, .mat-mdc-menu-item .mat-mdc-menu-submenu-icon {
+  color: var(--color-azul-eter) !important;
+}
+
+.mat-mdc-menu-item, .mat-mdc-menu-item:visited, .mat-mdc-menu-item:link {
+  color: var(--muted-text-color) !important;
+}
+
+.button {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  background: none;
+
+  &:hover{
+    background: rgba(255, 255, 255, 0.1);
+    transition: 0.4s linear all;
+    cursor: pointer;
+  }
+}

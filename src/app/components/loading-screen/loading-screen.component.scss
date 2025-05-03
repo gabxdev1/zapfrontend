@@ -1,0 +1,289 @@
+/* loading.component.scss */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  z-index: 9999;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.electricity-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  overflow: visible;
+}
+
+.electric-bg {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(
+      circle at center,
+      rgba(157, 78, 221, 0.8) 0%,
+      rgba(157, 78, 221, 0.5) 40%,
+      rgba(157, 78, 221, 0.3) 60%,
+      rgba(157, 78, 221, 0) 80%
+  );
+  animation: pulse-bg 3s ease-in-out infinite alternate;
+  filter: blur(5px);
+}
+
+@keyframes pulse-bg {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.lightning-effect {
+  position: absolute;
+  background-color: #fff;
+  opacity: 0;
+  filter: blur(3px);
+  z-index: 1;
+  transform-origin: center;
+}
+
+.lightning-1 {
+  top: 40px;
+  left: 110px;
+  height: 140px;
+  width: 3px;
+  transform: rotate(0deg);
+  box-shadow: 0 0 10px 2px rgba(157, 78, 221, 0.8), 0 0 20px 5px rgba(157, 78, 221, 0.5);
+  animation: lightning-flash 4s infinite ease-out;
+  animation-delay: 0s;
+}
+
+.lightning-2 {
+  top: 40px;
+  left: 110px;
+  height: 140px;
+  width: 3px;
+  transform: rotate(90deg);
+  box-shadow: 0 0 10px 2px rgba(157, 78, 221, 0.8), 0 0 20px 5px rgba(157, 78, 221, 0.5);
+  animation: lightning-flash 4s infinite ease-out;
+  animation-delay: 1s;
+}
+
+.lightning-3 {
+  top: 40px;
+  left: 110px;
+  height: 140px;
+  width: 3px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px 2px rgba(157, 78, 221, 0.8), 0 0 20px 5px rgba(157, 78, 221, 0.5);
+  animation: lightning-flash 4s infinite ease-out;
+  animation-delay: 2s;
+}
+
+.lightning-4 {
+  top: 40px;
+  left: 110px;
+  height: 140px;
+  width: 3px;
+  transform: rotate(135deg);
+  box-shadow: 0 0 10px 2px rgba(157, 78, 221, 0.8), 0 0 20px 5px rgba(157, 78, 221, 0.5);
+  animation: lightning-flash 4s infinite ease-out;
+  animation-delay: 3s;
+}
+
+@keyframes lightning-flash {
+  0%, 100% {
+    opacity: 0;
+  }
+  10%, 14% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  18%, 22% {
+    opacity: 0;
+  }
+  23% {
+    opacity: 0.8;
+  }
+  26% {
+    opacity: 0;
+  }
+}
+
+.title {
+  position: relative;
+  font-size: 3.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+  z-index: 2;
+  text-shadow:
+    0 0 5px rgba(157, 78, 221, 1),
+    0 0 10px rgba(157, 78, 221, 0.8),
+    0 0 15px rgba(157, 78, 221, 0.6),
+    0 0 20px rgba(157, 78, 221, 0.4);
+}
+
+.loading-message {
+  color: #fff;
+  font-size: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+  max-width: 300px;
+  text-shadow: 0 0 8px rgba(157, 78, 221, 0.6);
+}
+
+.spinner {
+  margin: 0 auto;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 100%;
+  display: inline-block;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  margin: 0 3px;
+  box-shadow: 0 0 8px rgba(157, 78, 221, 0.8);
+}
+
+.spinner .bounce1 {
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0);
+  } 40% {
+      transform: scale(1.0);
+    }
+}
+
+/* Alternative more complex electric effect - can replace the existing SCSS */
+
+/* Add this to the existing SCSS file for more advanced lightning effects */
+.electricity-container::before,
+.electricity-container::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid transparent;
+  border-top: 2px solid rgba(157, 78, 221, 0.8);
+  border-right: 2px solid rgba(157, 78, 221, 0.3);
+  border-bottom: 2px solid rgba(157, 78, 221, 0.8);
+  border-left: 2px solid rgba(157, 78, 221, 0.3);
+  filter: blur(1px);
+}
+
+.electricity-container::before {
+  animation: rotate 8s linear infinite;
+}
+
+.electricity-container::after {
+  animation: rotate 4s linear infinite reverse;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* This creates jagged lightning bolts that appear and disappear */
+.jagged-lightning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.jagged-lightning svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.jagged-lightning svg path {
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 10 20;
+  stroke-dashoffset: 0;
+  animation: dash 2s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(157, 78, 221, 0.8));
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+/* Add electric particle effects */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  background: #fff;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(157, 78, 221, 0.8);
+  animation: particle-animation 2s ease-in-out infinite;
+}
+
+@keyframes particle-animation {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(20px);
+    opacity: 0;
+  }
+}

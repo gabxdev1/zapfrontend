@@ -1,0 +1,41 @@
+@defer (when isLoading) {
+  <div #containerHome class="container-home">
+
+    <app-menu class="app-menu"/>
+
+    <div class="container-section-2">
+      @if (menuService.conversationListOpen$ | async) {
+        <app-conversation-header class="app-conversation-header"/>
+        <app-conversation-list class="app-conversation-list"/>
+      }
+
+      @if (menuService.friendRequestOpen$ | async) {
+        <app-friend-request class="app-friend-request"/>
+      }
+
+      @if (menuService.sideBarFriendship$ | async) {
+        <app-side-bar-friendship class="app-side-bar-friendship"/>
+      }
+
+      @if (menuService.notifications$ | async) {
+        <app-notification class="app-notification"/>
+      }
+
+      @if (menuService.createGroup$ | async) {
+        <app-create-group class="app-create-group"/>
+      }
+    </div>
+
+    <div class="container-section-3">
+      @if (!(currentChatService.chatTarget$ | async)) {
+        <div class="background"></div>
+      } @else {
+        <app-chat-view class="app-chat-view"/>
+      }
+    </div>
+
+
+  </div>
+} @placeholder (minimum 5s) {
+  <app-loading-screen/>
+}
