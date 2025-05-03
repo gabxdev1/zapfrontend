@@ -99,7 +99,7 @@
       </div>
 
       <textarea #chatInput [(ngModel)]="message" class="chat-input-text chat-input"
-                placeholder="Type a message"></textarea>
+                placeholder="Type a message" (keydown.enter)="activeChatTarget?.type === ChatType.PRIVATE ? sendPrivateMessage() : sendGroupMessage()"></textarea>
 
       @if (activeChatTarget?.type === ChatType.PRIVATE) {
         <mat-icon class="send" (click)="sendPrivateMessage()">send</mat-icon>
