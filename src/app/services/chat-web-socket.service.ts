@@ -66,7 +66,7 @@ export class ChatWebSocketService {
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
       onConnect: () => {
-        console.log('WebSocket conectado!');
+        console.log('connection established');
         this.connected.next(true);
         this.initSubscribers();
         this.syncUserContext();
@@ -129,9 +129,6 @@ export class ChatWebSocketService {
     this.subscriptions.add(
       () => this._stompClient.subscribe('/user/queue/group-message', message => {
         const body: GroupMessageResponse[] = JSON.parse(message.body);
-
-        console.log("Testando mensagens antigas do grupo!");
-        console.log(body);
 
         body.forEach(message => {
           this.markAsReceivedGroupMessage(message);
@@ -216,8 +213,6 @@ export class ChatWebSocketService {
   public markAsReceivedGroupMessage(groupMessage: GroupMessageResponse): void {
     if (this._stompClient && this._stompClient.connected) {
       if (groupMessage.audit.createdBy.id !== this.currentUser.id) {
-        console.log(groupMessage.messageId);
-        console.log(groupMessage);
         this._stompClient.publish({
           destination: '/app/group-message-received',
           body: JSON.stringify({messageId: groupMessage.messageId}),

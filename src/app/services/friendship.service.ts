@@ -34,7 +34,6 @@ export class FriendshipService {
       `${environment.api.baseURL}/users/friends-requests`,
       friendRequestPostRequest
     ).subscribe({
-      next: (r) => console.log(r),
       error: error => console.log(error),
     });
   }
@@ -44,7 +43,6 @@ export class FriendshipService {
       `${environment.api.baseURL}/users/friends-requests`,
       friendRequestPutRequest
     ).subscribe({
-      next: (r) => console.log(r),
       error: error => console.log(error),
     });
   }
@@ -55,7 +53,6 @@ export class FriendshipService {
         body: friendRequestDeleteRequest
       }
     ).subscribe({
-      next: (r) => console.log(r),
       error: error => console.log(error),
     });
   }

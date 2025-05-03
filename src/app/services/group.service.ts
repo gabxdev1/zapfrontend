@@ -113,7 +113,6 @@ export class GroupService {
           const index = groupMessagesStatus.findIndex(status => status.messageId === groupMessage.messageId);
 
           if (index === -1 && groupMessage.audit.createdBy.id !== this.currentUser.id) {
-            console.log(groupMessage.content);
             this.chatWebSocketService.markAsReceivedGroupMessage(groupMessage);
           }
         });
