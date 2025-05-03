@@ -377,7 +377,6 @@ export class ChatViewComponent implements OnInit, AfterViewInit, OnDestroy {
     let messageToSend = this.message.trim();
 
     this.message = '';
-    this.resetTextAreaHeight();
 
     if (!(messageToSend.length > 0)) {
       return;
@@ -417,6 +416,8 @@ export class ChatViewComponent implements OnInit, AfterViewInit, OnDestroy {
     this.privateMessageService.addMessage(tempMessage);
 
     this.chatWebSocketService.sendPrivateMessage(payload);
+
+    this.resetTextAreaHeight();
   }
 
   sendGroupMessage() {
@@ -460,6 +461,8 @@ export class ChatViewComponent implements OnInit, AfterViewInit, OnDestroy {
     this.groupMessageService.addMessage(tempMessage);
 
     this.chatWebSocketService.sendGroupMessage(payload);
+
+    this.resetTextAreaHeight();
   }
 
   private adjustTextareaHeight() {
