@@ -1,5 +1,6 @@
 <div class="container">
-  <div class="container-chat-view" [ngClass]="{'width-50': messageDataOpen || detailsOpen, 'width-100': !messageDataOpen && !detailsOpen}">
+  <div class="container-chat-view"
+       [ngClass]="{'width-50': messageDataOpen || detailsOpen, 'width-100': !messageDataOpen && !detailsOpen}">
     <div class="header-chat-view">
       <img (click)="openDetails()" class="profile-image" src="../../../assets/default-user.jpg">
 
@@ -31,14 +32,12 @@
           <mat-icon id="icon">more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="menu">
-          <button mat-menu-item>
-            <mat-icon>description</mat-icon>
-            @if(activeChatTarget?.type === ChatType.GROUP) {
+          @if (activeChatTarget?.type === ChatType.GROUP) {
+            <button mat-menu-item>
+              <mat-icon>description</mat-icon>
               <span (click)="openDetails()">Group details</span>
-            } @else {
-              <span>Contact details</span>
-            }
-          </button>
+            </button>
+          }
           <button mat-menu-item (click)="closeConversation()">
             <mat-icon>close</mat-icon>
             <span>Close conversation</span>
@@ -90,7 +89,7 @@
 
       <mat-menu #messageOptions="matMenu">
         <button mat-menu-item (click)="onOptionClick('messageData', selectedMessage)">Message Data</button>
-        <button mat-menu-item (click)="onOptionClick('delete', selectedMessage)">Delete</button>
+        <button style="display: none;" mat-menu-item (click)="onOptionClick('delete', selectedMessage)">Delete</button>
       </mat-menu>
     </div>
 
@@ -189,7 +188,7 @@
                 <img class="profile-img" src="../../../assets/default-user.jpg">
 
                 <div class="container-user-details">
-                  <p class="name name-data">{{ messageGroupStatus.firstName }} {{messageGroupStatus.lastName}}</p>
+                  <p class="name name-data">{{ messageGroupStatus.firstName }} {{ messageGroupStatus.lastName }}</p>
                   <p
                     class="time">{{ messageGroupStatus.readAt | date: "dd MMM yyyy 'at' HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
                 </div>
@@ -211,7 +210,7 @@
                 <img class="profile-img" src="../../../assets/default-user.jpg">
 
                 <div class="container-user-details">
-                  <p class="name name-data">{{ messageGroupStatus.firstName }} {{messageGroupStatus.lastName}}</p>
+                  <p class="name name-data">{{ messageGroupStatus.firstName }} {{ messageGroupStatus.lastName }}</p>
                   <p
                     class="time">{{ messageGroupStatus.receivedAt | date: "dd MMM yyyy 'at' HH:mm" : 'America/Sao_Paulo' : 'en-US' }}</p>
                 </div>
