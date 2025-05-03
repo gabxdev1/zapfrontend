@@ -47,8 +47,6 @@ export class SignInComponent implements OnInit {
   submitForm(): void {
     const objUserForm: RegisterPostRequest = this.formSignIn.getRawValue();
 
-    console.log(objUserForm);
-
     this.userService.register(objUserForm).subscribe({
       next: (result) => {
         console.log(result);
